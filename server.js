@@ -8,6 +8,7 @@ const app = express();
 app.use(cors());
 app.use(json());
 
+const PORT = process.env.PORT || 7000;
 const { parsed: config } = dotenv.config();
 
 const BASE_URL = `https://api.cloudinary.com/v1_1/${config.CLOUD_NAME}`;
@@ -37,4 +38,4 @@ app.get('/search', async (req, res) => {
     return res.send(response.data)
 })
 
-app.listen(7000, console.log('server is running on port 7000'));
+app.listen(PORT, console.log(`server is running on port ${PORT}`));
