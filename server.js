@@ -1,5 +1,5 @@
+require("dotenv").config();
 const express = require('express');
-const dotenv = require('dotenv');
 const cors = require('cors');
 const { json } = require('body-parser');
 const axios = require('axios');
@@ -9,12 +9,11 @@ app.use(cors());
 app.use(json());
 
 const PORT = process.env.PORT || 7000;
-const { parsed: config } = dotenv.config();
 
-const BASE_URL = `https://api.cloudinary.com/v1_1/${config.CLOUD_NAME}`;
+const BASE_URL = `https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}`;
 const auth = {
-    username: config.API_KEY,
-    password: config.API_SECRET,
+    username: process.env.API_KEY,
+    password: process.env.API_SECRET,
 };
 
 app.get('/photos', async (req, res) => {
